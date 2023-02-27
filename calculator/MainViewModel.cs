@@ -22,7 +22,6 @@ namespace calculator
         }
         private expreval.Expreval calc = new expreval.Expreval();
         private string _expression = "";
-        private string _hotExpression = "";
         private int _historyVisibility = 0;
         private ObservableCollection<string> _recentExpressions = new ObservableCollection<string>();
         public ICommand SolveCommand { get; }
@@ -67,20 +66,6 @@ namespace calculator
             }
         }
 
-        public string HotExpression
-        {
-            get
-            {
-                return _hotExpression;
-            }
-            set
-            {
-                if (value != _hotExpression)
-                    _hotExpression = value;
-                OnPropertyChanged(nameof(HotExpression));
-            }
-        }
-
         public void Solve(string exp)
         {
 
@@ -97,7 +82,6 @@ namespace calculator
             else
             {
                 Expression = exp;
-                HotExpression = "";
                 if (_recentExpressions.Count == 0)
                     _recentExpressions.Insert(0, sourceExp);
                 else if (sourceExp != _recentExpressions[0])
@@ -112,22 +96,6 @@ namespace calculator
 #endif
             }
         }   
-        public void HotSolve(string exp)
-        {
-            exp = calc.DeleteWhiteSpaces(exp);
-            exp = exp.Replace('×', '*');
-            exp = exp.Replace('÷', '/');
-            exp = calc.EvaluateExpression(exp);
-
-            if (Error)
-            {
-                HotExpression = "Error";
-            }
-            else
-            {
-                HotExpression = exp;
-            }
-        }
 
         public ObservableCollection<string> RecentExpressions
         {
@@ -203,8 +171,22 @@ namespace calculator
                 }
                 if (x == "=")
                 {
-                    Solve(Expression);
-                    HotExpression = "";
+                    try
+                    {
+                        Calculator calc = new Calculator();
+                        string historyExpression = Expression;
+                        Expression = Expression.Replace('×', '*');
+                        Expression = Expression.Replace('÷', '/');
+                        double result = calc.Calculate(Expression);
+                        Expression = result.ToString();
+                        historyExpression += " = " + Expression;
+                        RecentExpressions.Add(historyExpression);
+                        HistoryWriteDB(historyExpression);
+                    }
+                    catch (Exception e)
+                    {
+                        Expression = "Error";
+                    }
                 }
                 else if (x == "history")
                 {
@@ -287,13 +269,8 @@ namespace calculator
                         Expression += x;
                     }
 
+                }
 
-                }
-                //Hot Solve Logic
-                if (x != "+" && x != "-" && x != "÷" && x != "×" && x != "=" && x != "Enter")
-                {
-                    HotSolve(Expression);
-                }
             }, x => string.IsNullOrWhiteSpace(x) == false);
         }
 

@@ -75,9 +75,6 @@
         <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Right">
             <Label Padding="10" x:Name="MainText" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="44" Content="{Binding Expression}" />
         </Viewbox>
-        <Viewbox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Right">
-            <Label Padding="7"  x:Name="HotText" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="18" Content="{Binding HotExpression}"/>
-        </Viewbox>
         <Button Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" VerticalContentAlignment="Top" Height="40" Grid.ColumnSpan="4"  Command="{Binding IButtonClicked}" CommandParameter="clear_history">Clear History</Button>
         <Button Grid.Row="2" VerticalAlignment="Bottom" Height="20" Grid.ColumnSpan="4" Command="{Binding IButtonClicked}" CommandParameter="history">History</Button>
         
