@@ -1,4 +1,4 @@
-﻿#define DBHISTORY
+﻿
 using System;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
@@ -20,24 +20,11 @@ namespace calculator
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private expreval.Expreval calc = new expreval.Expreval();
         private string _expression = "";
         private int _historyVisibility = 0;
         private ObservableCollection<string> _recentExpressions = new ObservableCollection<string>();
         public ICommand SolveCommand { get; }
-        public bool Error
-        {
-            get
-            {
-                return calc.err;
-            }
-            set
-            {
-                if (value != calc.err)
-                    calc.err = value;
-            }
 
-        }
         public string Expression
         {
             get
@@ -66,37 +53,6 @@ namespace calculator
             }
         }
 
-        public void Solve(string exp)
-        {
-
-            string sourceExp = exp;
-            exp = calc.DeleteWhiteSpaces(exp);
-            exp = exp.Replace('×', '*');
-            exp = exp.Replace('÷', '/');
-            exp = calc.EvaluateExpression(exp);
-
-            if (Error)
-            {
-                Expression = "Error";
-            }
-            else
-            {
-                Expression = exp;
-                if (_recentExpressions.Count == 0)
-                    _recentExpressions.Insert(0, sourceExp);
-                else if (sourceExp != _recentExpressions[0])
-                    _recentExpressions.Insert(0, sourceExp);
-
-#if DBHISTORY
-                HistoryWriteDB(sourceExp);
-#else
-                StreamWriter sw = System.IO.File.AppendText(path);
-                sw.WriteLine(sourceExp);
-                sw.Close();
-#endif
-            }
-        }   
-
         public ObservableCollection<string> RecentExpressions
         {
             get
@@ -115,7 +71,7 @@ namespace calculator
 
         public void HistoryReadDB()
         {
-            using (var connection = new System.Data.SQLite.SQLiteConnection($"Data Source=C:\\Users\\usaro\\OneDrive\\Рабочий стол\\history.db"))
+            using (var connection = new System.Data.SQLite.SQLiteConnection($"Data Source=C:/Users/usaro/OneDrive/Рабочий стол/калькулятор/calculator/history.db"))
             {
                 connection.Open();
 
@@ -127,14 +83,12 @@ namespace calculator
                     string exp = Convert.ToString(reader["value"]);
                     _recentExpressions.Add(exp);
                 }
-
             }
         }
 
         public void HistoryWriteDB(string exp)
         {
-
-            using (var connection = new System.Data.SQLite.SQLiteConnection($"Data Source=C:\\Users\\usaro\\OneDrive\\Рабочий стол\\history.db"))
+            using (var connection = new System.Data.SQLite.SQLiteConnection($"Data Source=C:/Users/usaro/OneDrive/Рабочий стол/калькулятор/calculator/history.db"))
             {
                 connection.Open();
                 var command = connection.CreateCommand();
@@ -160,15 +114,6 @@ namespace calculator
 #endif
             IButtonClicked = new RelayCommand<string>(x =>
             {
-                if (Error)
-                {
-                    if (x == "⌫")
-                    {
-                        if (Expression.Length != 0)
-                            Expression = Expression.Substring(0, Expression.Length - 1);
-                        Error = false;
-                    }
-                }
                 if (x == "=")
                 {
                     try
@@ -198,7 +143,7 @@ namespace calculator
                 else if (x == "clear_history")
                 {
 #if DBHISTORY
-                    using (var connection = new System.Data.SQLite.SQLiteConnection($"Data Source =C:\\Users\\usaro\\OneDrive\\Рабочий стол\\history.db"))
+                    using (var connection = new System.Data.SQLite.SQLiteConnection($"Data Source=C:/Users/usaro/OneDrive/Рабочий стол/калькулятор/calculator/history.db"))
                     {
                         connection.Open();
                         var command = connection.CreateCommand();
@@ -215,16 +160,11 @@ namespace calculator
                 else if (x == "C")
                 {
                     Expression = "";
-                    Error = false;
                 }
                 else if (x == "⌫")
                 {
                     if (Expression.Length != 0)
                         Expression = Expression.Substring(0, Expression.Length - 1);
-                }
-                else if (x == "Enter")
-                {
-                    Solve(Expression);
                 }
                 else
                 {

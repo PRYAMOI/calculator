@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentAssertions;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -199,4 +201,5 @@ namespace calculator
 
         }
     }
+
 }

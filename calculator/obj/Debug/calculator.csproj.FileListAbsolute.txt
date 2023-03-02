@@ -44,6 +44,12 @@ C:\Users\en9er\source\repos\str_solve\calculator\bin\Debug\Newtonsoft.Json.dll
 C:\Users\en9er\source\repos\str_solve\calculator\bin\Debug\Newtonsoft.Json.xml
 C:\Users\en9er\source\repos\str_solve\calculator\bin\Debug\System.Data.SQLite.dll
 C:\Users\en9er\source\repos\str_solve\calculator\bin\Debug\System.Data.SQLite.xml
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\nunit.engine.dll
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\nunit.engine.api.dll
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\nunit.engine.core.dll
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\testcentric.engine.metadata.dll
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\calculator.exe.config
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\calculator.exe
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\calculator.pdb
@@ -76,7 +82,6 @@ C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculato
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\System.Data.SQLite.xml
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\calculator.csproj.AssemblyReference.cache
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\MainWindow.g.cs
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\App.g.cs
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\calculator_MarkupCompile.cache
@@ -89,3 +94,4 @@ C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculato
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\calculator.csproj.CopyComplete
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\calculator.exe
 C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\calculator.pdb
+C:\Users\usaro\OneDrive\Рабочий стол\калькулятор\calculator\obj\Debug\calculator.csproj.AssemblyReference.cache
